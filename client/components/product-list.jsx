@@ -1,10 +1,21 @@
 import React from 'react';
+import ProductListItem from './product-list-item';
 
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { products: [] };
     this.getProducts = this.getProducts.bind(this);
+    this.createList = this.createList.bind(this);
+  }
+
+  createList() {
+    const list = this.state.products.map(product => <ProductListItem key={product.productId} product={product} />);
+    return (
+      <>
+        { list }
+      </>
+    );
   }
 
   getProducts() {
@@ -19,7 +30,12 @@ class ProductList extends React.Component {
   }
 
   render() {
-    return null;
+    const list = this.createList();
+    return (
+      <div className="card-deck">
+        { list }
+      </div>
+    );
   }
 }
 

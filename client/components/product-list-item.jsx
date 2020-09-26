@@ -1,12 +1,13 @@
 import React from 'react';
 
-function ProductListItem() {
+function ProductListItem(props) {
   return (
     <div className="card">
-      <img src="..." alt="..." className="card-img-top"></img>
+      <img src={props.product.image} alt={props.product.name} className="card-img-top"></img>
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <h5 className="card-title">{props.product.name}</h5>
+        <p className="card-text"><small className="text-muted">{props.product.price}</small></p>
+        <p className="card-text">{props.product.shortDescription}</p>
       </div>
     </div>
   );
