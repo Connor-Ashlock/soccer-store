@@ -32,7 +32,7 @@ class ProductList extends React.Component {
   render() {
     const list = this.createList();
     return (
-      <div className="card-deck">
+      <div className="card-deck justify-content-center">
         { list }
       </div>
     );

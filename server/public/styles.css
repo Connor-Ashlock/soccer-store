@@ -1,13 +1,34 @@
+body {
+  background-color: whitesmoke;
+}
+
 .fa-dollar-sign {
   font-size: 2rem;
 }
 
 .fa-dollar-sign,
 h2 {
-  color: whitesmoke;
+  color: white;
 }
 
 header {
   height: 70px;
   background-color: rgb(52, 58, 64);
+}
+
+.card {
+  min-width: 23%;
+  max-width: 25%;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.378);
+}
+
+img {
+  object-fit: contain;
+  max-height: 11rem;
+}
+
+@media (max-width: 1000px) {
+  .card {
+    max-width: none;
+  }
 }
