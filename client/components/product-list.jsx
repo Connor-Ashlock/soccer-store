@@ -14,6 +14,10 @@ class ProductList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  componentDidMount() {
+    this.getProducts();
+  }
+
   render() {
     return null;
   }
