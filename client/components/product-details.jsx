@@ -20,7 +20,7 @@ class ProductDetails extends React.Component {
     return (
       <div className="row justify-content-center">
         <div className="col-11 d-flex flex-wrap border p-4">
-          <div className="text-muted col-12">{back}</div>
+          <div className="text-muted col-12 back">{back}</div>
           <img src="/images/shamwow.jpg" alt="shamwow" className="col-4 mb-3" />
           <div className="col-8">
             <h3>ShamWow</h3>
