@@ -9,7 +9,7 @@ class ProductDetails extends React.Component {
   }
 
   handleClick() {
-    this.props.setView('catalog', { params: {} });
+    this.props.setView('catalog', {});
   }
 
   componentDidMount() {
@@ -37,12 +37,22 @@ class ProductDetails extends React.Component {
             <p>{shortDescription}</p>
           </div>
           <div className="col-11">
-            <p>{longDescription}</p>
+            <div>{formatLongDescription(longDescription)}</div>
           </div>
         </div>
       </div>
     );
   }
+}
+
+function formatLongDescription(longDescription) {
+  longDescription = longDescription.split('\\n');
+  const newLongDescription = longDescription.map((paragraph, index) => <p key={index}>{paragraph}</p>);
+  return (
+    <>
+      {newLongDescription}
+    </>
+  );
 }
 
 export default ProductDetails;
