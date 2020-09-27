@@ -6,6 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { view: { name: 'catalog', params: {} } };
+    this.setView = this.setView.bind(this);
   }
 
   setView(name, params) {
@@ -16,7 +17,7 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <ProductList />
+        <ProductList setView={this.setView}/>
       </>
     );
   }
