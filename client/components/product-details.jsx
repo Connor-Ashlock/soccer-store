@@ -1,4 +1,5 @@
 import React from 'react';
+import formatPrice from './format-price';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class ProductDetails extends React.Component {
           <img src={image} alt={name} className="col-4 mb-3" />
           <div className="col-8">
             <h3>{name}</h3>
-            <h5 className="text-muted">{price}</h5>
+            <h5 className="text-muted">{formatPrice(price)}</h5>
             <p>{shortDescription}</p>
           </div>
           <div className="col-11">

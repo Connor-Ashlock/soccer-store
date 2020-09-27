@@ -1,9 +1,14 @@
+import formatPrice from './format-price';
 import React from 'react';
 
 function ProductListItem(props) {
   return (
     <div className="card mb-4">
-      <img onClick={props.handleClick} id={props.product.productId} src={props.product.image} alt={props.product.name} className="card-img-top"></img>
+      <img onClick={props.handleClick}
+        id={props.product.productId}
+        src={props.product.image}
+        alt={props.product.name}
+        className="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">{props.product.name}</h5>
         <p className="card-text"><small className="text-muted">{formatPrice(props.product.price)}</small></p>
@@ -11,13 +16,6 @@ function ProductListItem(props) {
       </div>
     </div>
   );
-}
-
-function formatPrice(price) {
-  let formattedPrice = price + '';
-  formattedPrice = formattedPrice.split('');
-  formattedPrice.splice(parseInt(formattedPrice.length, 10) - 2, 0, '.');
-  return `$${formattedPrice.join('')}`;
 }
 
 export default ProductListItem;
