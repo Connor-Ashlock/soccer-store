@@ -7,10 +7,19 @@ class ProductList extends React.Component {
     this.state = { products: [] };
     this.getProducts = this.getProducts.bind(this);
     this.createList = this.createList.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   createList() {
-    const list = this.state.products.map(product => <ProductListItem key={product.productId} product={product} />);
+    const list = this.state.products.map(product => {
+      return (
+        <ProductListItem
+          key={product.productId}
+          id={product.productId}
+          product={product}
+          handleClick={this.handleClick} />
+      );
+    });
     return (
       <>
         { list }
@@ -23,6 +32,10 @@ class ProductList extends React.Component {
       .then(res => res.json())
       .then(productList => this.setState({ products: productList }))
       .catch(err => console.error(err));
+  }
+
+  handleClick() {
+    this.props.setView('details', { productId: parseInt(event.target.id, 10) });
   }
 
   componentDidMount() {

@@ -1,7 +1,3 @@
-body {
-  background-color: whitesmoke;
-}
-
 .fa-dollar-sign {
   font-size: 2rem;
 }
@@ -22,13 +18,21 @@ header {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.378);
 }
 
+.card-img-top {
+  max-height: 11rem;
+}
+
 img {
   object-fit: contain;
-  max-height: 11rem;
 }
 
 @media (max-width: 1000px) {
   .card {
     max-width: none;
   }
+}
+
+.card-img-top:hover,
+.back:hover {
+  cursor: pointer;
 }
