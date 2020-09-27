@@ -33,6 +33,28 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/products/:productId', express.json(), (req, res, next) => {
+  const id = parseInt(req.params.productId, 10);
+  const selectId = `
+    select "name",
+           "price",
+           "image",
+           "shortDescription",
+           "longDescription",
+           "productId"
+      from "products"
+     where "productId" = $1;
+  `;
+  db.query(selectId, [id])
+    .then(result => {
+      if (!result.rows[0]) {
+        return next(new ClientError('The product id does not exist', 404));
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
