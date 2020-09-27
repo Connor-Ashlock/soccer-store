@@ -11,7 +11,15 @@ class ProductList extends React.Component {
   }
 
   createList() {
-    const list = this.state.products.map(product => <ProductListItem key={product.productId} product={product} onClick={this.handleClick} />);
+    const list = this.state.products.map(product => {
+      return (
+        <ProductListItem
+          key={product.productId}
+          id={product.productId}
+          product={product}
+          handleClick={this.handleClick} />
+      );
+    });
     return (
       <>
         { list }
@@ -26,8 +34,8 @@ class ProductList extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleClick(product) {
-    this.props.setView('details', { productId: product.productId });
+  handleClick() {
+    this.props.setView('details', { productId: parseInt(event.target.id, 10) });
   }
 
   componentDidMount() {

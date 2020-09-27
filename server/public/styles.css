@@ -32,7 +32,7 @@ img {
   }
 }
 
-.card:hover,
+.card-img-top:hover,
 .back:hover {
   cursor: pointer;
 }

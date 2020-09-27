@@ -3,7 +3,7 @@ import React from 'react';
 function ProductListItem(props) {
   return (
     <div className="card mb-4">
-      <img src={props.product.image} alt={props.product.name} className="card-img-top"></img>
+      <img onClick={props.handleClick} id={props.product.productId} src={props.product.image} alt={props.product.name} className="card-img-top"></img>
       <div className="card-body">
         <h5 className="card-title">{props.product.name}</h5>
         <p className="card-text"><small className="text-muted">{formatPrice(props.product.price)}</small></p>
