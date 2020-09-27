@@ -48,7 +48,7 @@ app.get('/api/products/:productId', express.json(), (req, res, next) => {
   db.query(selectId, [id])
     .then(result => {
       if (!result.rows[0]) {
-        next(new ClientError('The product id does not exist', 400));
+        return next(new ClientError('The product id does not exist', 404));
       }
       res.json(result.rows[0]);
     })
@@ -56,7 +56,7 @@ app.get('/api/products/:productId', express.json(), (req, res, next) => {
 });
 
 app.use('/api', (req, res, next) => {
-  next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 200));
+  next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
 
 app.use((err, req, res, next) => {
