@@ -5,7 +5,6 @@ const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
-
 const app = express();
 
 app.use(staticMiddleware);
@@ -63,6 +62,13 @@ app.get('/api/cart', (req, res, next) => {
   db.query(select)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
+});
+
+app.post('/api/cart', express.json(), (req, res, next) => {
+  const productId = parseInt(req.body.productId, 10);
+  if (!productId || productId < 1) {
+    next(new ClientError('The productId must be a postive integer', 400));
+  }
 });
 
 app.use('/api', (req, res, next) => {
