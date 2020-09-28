@@ -6,8 +6,11 @@ import ProductDetails from './product-details';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { view: { name: 'catalog', params: {} } };
     this.setView = this.setView.bind(this);
+    this.state = {
+      view: { name: 'catalog', params: {} },
+      cart: []
+    };
   }
 
   setView(name, params) {
