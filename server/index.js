@@ -85,15 +85,28 @@ app.post('/api/cart', express.json(), (req, res, next) => {
   db.query(select, [productId])
     .then(result => {
       if (!result.rows[0]) throw new ClientError('The productId does not exist', 404);
-      if (req.session.cartId) return req.session.cartId;
       const insert = `
         insert into "carts" ("cartId", "createdAt")
              values (default, default)
           returning "cartId";
       `;
       const newResult = result.rows[0];
-      return db.query(insert)
-        .then(result => Object.assign(newResult, result.rows[0]));
+      if (req.session.cartId) {
+        const selectCartId = `
+          select "cartId"
+            from "carts"
+           where "cartId" = $1;
+        `;
+        return db.query(selectCartId, [req.session.cartId])
+          .then(result => {
+            return Object.assign(newResult, result.rows[0]);
+          });
+      } else {
+        return db.query(insert)
+          .then(result => {
+            return Object.assign(newResult, result.rows[0]);
+          });
+      }
     })
     .then(result => {
       req.session.cartId = result.cartId;
