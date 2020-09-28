@@ -51,7 +51,7 @@ class App extends React.Component {
         <Header cartItemCount={this.state.cart.length} />
         {this.state.view.name === 'catalog'
           ? <ProductList setView={this.setView} />
-          : <ProductDetails setView={this.setView} params={this.state.view.params} />
+          : <ProductDetails addToCart= {this.addToCart} setView={this.setView} params={this.state.view.params} />
         }
       </>
     );

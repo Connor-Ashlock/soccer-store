@@ -6,10 +6,15 @@ class ProductDetails extends React.Component {
     super(props);
     this.state = { product: null };
     this.handleClick = this.handleClick.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
   handleClick() {
     this.props.setView('catalog', {});
+  }
+
+  handleAddToCart() {
+    this.props.addToCart(this.state.product);
   }
 
   componentDidMount() {
@@ -35,7 +40,7 @@ class ProductDetails extends React.Component {
             <h3>{name}</h3>
             <h5 className="text-muted">{formatPrice(price)}</h5>
             <p>{shortDescription}</p>
-            <button className="btn btn-primary">Add to Cart</button>
+            <button className="btn btn-primary mb-4" onClick={this.handleAddToCart}>Add to Cart</button>
           </div>
           <div className="col-11">
             <div>{formatLongDescription(longDescription)}</div>
