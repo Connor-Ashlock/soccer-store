@@ -32,7 +32,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header />
+        <Header cartItemCount={this.state.cart.length} />
         {this.state.view.name === 'catalog'
           ? <ProductList setView={this.setView} />
           : <ProductDetails setView={this.setView} params={this.state.view.params} />
