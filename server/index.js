@@ -47,7 +47,7 @@ app.get('/api/products/:productId', express.json(), (req, res, next) => {
   db.query(selectId, [id])
     .then(result => {
       if (!result.rows[0]) {
-        return next(new ClientError('The product id does not exist', 404));
+        return next(new ClientError('The productId does not exist', 404));
       }
       res.json(result.rows[0]);
     })
@@ -67,8 +67,28 @@ app.get('/api/cart', (req, res, next) => {
 app.post('/api/cart', express.json(), (req, res, next) => {
   const productId = parseInt(req.body.productId, 10);
   if (!productId || productId < 1) {
-    next(new ClientError('The productId must be a postive integer', 400));
+    return next(new ClientError('The productId must be a postive integer', 400));
   }
+  const select = `
+    select "price"
+      from "products"
+     where "productId" = $1
+  `;
+  db.query(select, [productId])
+    .then(result => {
+      if (!result.rows[0]) return next(new ClientError('The productId does not exist', 404));
+      const insert = `
+        insert into "carts" ("cartId", "createdAt")
+             values (default, default)
+          returning "cartId";
+      `;
+      const newResult = result.rows[0];
+      db.query(insert)
+        .then(result => {
+          res.json(Object.assign(newResult, result.rows[0]));
+        })
+        .catch(err => next(err));
+    });
 });
 
 app.use('/api', (req, res, next) => {
