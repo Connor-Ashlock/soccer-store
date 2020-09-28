@@ -84,7 +84,7 @@ app.post('/api/cart', express.json(), (req, res, next) => {
   `;
   db.query(select, [productId])
     .then(result => {
-      if (!result.rows[0]) throw next(new ClientError('The productId does not exist', 404));
+      if (!result.rows[0]) throw new ClientError('The productId does not exist', 404);
       if (req.session.cartId) return req.session.cartId;
       const insert = `
         insert into "carts" ("cartId", "createdAt")
@@ -93,8 +93,7 @@ app.post('/api/cart', express.json(), (req, res, next) => {
       `;
       const newResult = result.rows[0];
       return db.query(insert)
-        .then(result => Object.assign(newResult, result.rows[0]))
-        .catch(err => next(err));
+        .then(result => Object.assign(newResult, result.rows[0]));
     })
     .then(result => {
       req.session.cartId = result.cartId;
@@ -105,8 +104,7 @@ app.post('/api/cart', express.json(), (req, res, next) => {
       `;
       const params = [result.cartId, productId, result.price];
       return db.query(insert, params)
-        .then(result => result.rows[0])
-        .catch(err => next(err));
+        .then(result => result.rows[0]);
     })
     .then(result => {
       const selectItems = `
@@ -121,9 +119,9 @@ app.post('/api/cart', express.json(), (req, res, next) => {
          where "c"."cartItemId" = $1;
       `;
       return db.query(selectItems, [result.cartItemId])
-        .then(result => res.status(201).json(result.rows[0]))
-        .catch(err => next(err));
-    });
+        .then(result => res.status(201).json(result.rows[0]));
+    })
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
