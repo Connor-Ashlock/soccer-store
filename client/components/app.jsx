@@ -14,6 +14,21 @@ class App extends React.Component {
     };
   }
 
+  addToCart(product) {
+    fetch('./api/cart', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product)
+    })
+      .then(res => res.json())
+      .then(item => {
+        const newCart = this.state.cart.slice();
+        newCart.push(item);
+        this.setState({ cart: newCart });
+      })
+      .catch(err => console.error(err));
+  }
+
   getCartItems() {
     fetch('./api/cart')
       .then(res => res.json())
