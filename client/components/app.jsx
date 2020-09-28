@@ -7,10 +7,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.setView = this.setView.bind(this);
+    this.getCartItems = this.getCartItems.bind(this);
     this.state = {
       view: { name: 'catalog', params: {} },
       cart: []
     };
+  }
+
+  getCartItems() {
+    fetch('./api/cart')
+      .then(res => res.json())
+      .then(items => this.setState({ cart: items }))
+      .catch(err => console.error(err));
   }
 
   setView(name, params) {
