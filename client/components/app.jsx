@@ -25,6 +25,10 @@ class App extends React.Component {
     this.setState({ view: { name: name, params: params } });
   }
 
+  componentDidMount() {
+    this.getCartItems();
+  }
+
   render() {
     return (
       <>
