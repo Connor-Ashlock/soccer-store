@@ -35,6 +35,7 @@ class ProductDetails extends React.Component {
             <h3>{name}</h3>
             <h5 className="text-muted">{formatPrice(price)}</h5>
             <p>{shortDescription}</p>
+            <button className="btn btn-primary">Add to Cart</button>
           </div>
           <div className="col-11">
             <div>{formatLongDescription(longDescription)}</div>

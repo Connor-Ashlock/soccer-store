@@ -8,6 +8,7 @@ class App extends React.Component {
     super(props);
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
+    this.addToCart = this.addToCart.bind(this);
     this.state = {
       view: { name: 'catalog', params: {} },
       cart: []
