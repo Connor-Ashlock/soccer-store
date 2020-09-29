@@ -3,6 +3,7 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
+import CheckoutForm from './checkout-form';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,10 +11,23 @@ class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
     this.state = {
       view: { name: 'catalog', params: {} },
       cart: []
     };
+  }
+
+  placeOrder(order) {
+    fetch('./api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order)
+    })
+      .then(() => this.setState({
+        view: { name: 'catalog', params: {} },
+        cart: []
+      }));
   }
 
   addToCart(product) {
@@ -54,6 +68,8 @@ class App extends React.Component {
       view = <ProductDetails addToCart={this.addToCart} setView={this.setView} params={this.state.view.params} />;
     } else if (this.state.view.name === 'cart') {
       view = <CartSummary setView={this.setView} cart={this.state.cart} />;
+    } else if (this.state.view.name === 'checkout') {
+      view = <CheckoutForm cart={this.state.cart} placeOrder={this.placeOrder} setView={this.setView} />;
     }
     return (
       <>

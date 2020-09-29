@@ -25,6 +25,10 @@ header {
   height: 13rem;
 }
 
+.h-90 {
+  height: 90px;
+}
+
 img {
   object-fit: contain;
 }
