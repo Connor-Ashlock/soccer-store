@@ -16,7 +16,7 @@ function CartSummary(props) {
       <div className="text-muted back mb-2" onClick={handleBackClick}>&lt; Back to catalog</div>
       <h1 className="mb-3">My Cart</h1>
       { props.cart.length
-        ? props.cart.map(item => <CartSummaryItem key={item.productId} item={item} />)
+        ? props.cart.map((item, index) => <CartSummaryItem key={index} item={item} />)
         : <h3>Your cart is empty!</h3>
       }
       { props.cart.length !== 0 && <ItemTotalAndCheckoutBtn cart={props.cart} handleClick={handleCheckoutClick} />}
