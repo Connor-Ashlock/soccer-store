@@ -141,13 +141,23 @@ app.post('/api/orders', express.json(), (req, res, next) => {
   if (!req.session.cartId) throw new ClientError('A cartId must exist.', 400);
   if (!req.body.name && !req.body.creditCard && !req.body.shippingAddress) {
     throw new ClientError('The name, creditCard, and shippingAddress must be entered.', 400);
-  } else if (!parseInt(req.body.creditCard, 10)) {
+  } else if (!Number(req.body.creditCard)) {
     throw new ClientError('The creditCard must be a valid number with no spaces.', 400);
   } else if (!req.body.name) {
     throw new ClientError('The name must be entered.', 400);
   } else if (!req.body.shippingAddress) {
     throw new ClientError('The shippingAddress must be entered.', 400);
   }
+  const insert = `
+    insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+         values ($1, $2, $3, $4)
+      returning "name",
+                "creditCard",
+                "shippingAddress";
+  `;
+  const values = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
+  db.query(insert, values)
+    .then(result => res.json(result.rows[0]));
 });
 
 app.use('/api', (req, res, next) => {
