@@ -10,10 +10,23 @@ class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
     this.state = {
       view: { name: 'catalog', params: {} },
       cart: []
     };
+  }
+
+  placeOrder(order) {
+    fetch('./api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order)
+    })
+      .then(() => this.setState({
+        view: { name: 'catalog', params: {} },
+        cart: []
+      }));
   }
 
   addToCart(product) {
