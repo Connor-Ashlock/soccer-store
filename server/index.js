@@ -153,11 +153,17 @@ app.post('/api/orders', express.json(), (req, res, next) => {
          values ($1, $2, $3, $4)
       returning "name",
                 "creditCard",
-                "shippingAddress";
+                "shippingAddress",
+                "createdAt",
+                "orderId";
   `;
   const values = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
   db.query(insert, values)
-    .then(result => res.json(result.rows[0]));
+    .then(result => {
+      delete req.session.cartId;
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
