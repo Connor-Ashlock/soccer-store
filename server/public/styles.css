@@ -21,6 +21,10 @@ header {
   max-height: 11rem;
 }
 
+.cart-height {
+  height: 13rem;
+}
+
 img {
   object-fit: contain;
 }
