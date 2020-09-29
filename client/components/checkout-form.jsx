@@ -1,4 +1,5 @@
 import React from 'react';
+import calculateTotal from './calculate-total';
 
 class CheckoutForm extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class CheckoutForm extends React.Component {
     return (
       <div className="row">
         <h1 className="mb-4 col-12">My Cart</h1>
-        <h5 className="mb-4 text-muted col-12">Order Total: $25.00</h5>
+        <h5 className="mb-4 text-muted col-12">Order Total: { calculateTotal(this.props.cart) }</h5>
         <form className="col-12">
           <label>Name</label>
           <input type="text" value={this.state.name} onChange={this.handleNameChange} className="d-block col-12 mb-2" />

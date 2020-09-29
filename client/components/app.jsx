@@ -69,7 +69,7 @@ class App extends React.Component {
     } else if (this.state.view.name === 'cart') {
       view = <CartSummary setView={this.setView} cart={this.state.cart} />;
     } else if (this.state.view.name === 'checkout') {
-      view = <CheckoutForm />;
+      view = <CheckoutForm cart={this.state.cart} />;
     }
     return (
       <>
