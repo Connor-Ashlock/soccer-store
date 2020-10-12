@@ -43,7 +43,7 @@ class ProductDetails extends React.Component {
             <button className="btn btn-primary mb-4" onClick={this.handleAddToCart}>Add to Cart</button>
           </div>
           <div className="col-11">
-            <div>{formatLongDescription(longDescription)}</div>
+            <div>{formatDescription(longDescription)}</div>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ class ProductDetails extends React.Component {
   }
 }
 
-function formatLongDescription(longDescription) {
+function formatDescription(longDescription) {
   longDescription = longDescription.split('\\n');
   const newLongDescription = longDescription.map((paragraph, index) => <p key={index}>{paragraph}</p>);
   return (

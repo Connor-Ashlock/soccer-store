@@ -1,11 +1,11 @@
-.fa-dollar-sign {
+.fa-futbol {
   font-size: 2rem;
 }
 
 header {
   height: 70px;
-  background-color: rgb(52, 58, 64);
-  color: white;
+  background-color: rgb(194, 178, 131);
+  color: rgb(23, 17, 17);
 }
 
 .fa-shopping-cart {
