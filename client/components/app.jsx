@@ -4,6 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import DisclaimerModal from './disclaimer-modal';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.state = {
-      view: { name: 'catalog', params: {} },
+      view: { name: 'disclaimer', params: {} },
       cart: []
     };
   }
@@ -62,7 +63,9 @@ class App extends React.Component {
 
   render() {
     let view = null;
-    if (this.state.view.name === 'catalog') {
+    if (this.state.view.name === 'disclaimer') {
+      view = <DisclaimerModal setView={this.setView}/>;
+    } else if (this.state.view.name === 'catalog') {
       view = <ProductList setView={this.setView} />;
     } else if (this.state.view.name === 'details') {
       view = <ProductDetails addToCart={this.addToCart} setView={this.setView} params={this.state.view.params} />;
@@ -73,7 +76,7 @@ class App extends React.Component {
     }
     return (
       <>
-        <Header setView={this.setView} cartItemCount={this.state.cart.length} />
+        <Header setView={this.setView} cartItemCount={this.state.cart.length} view={this.state.view.name} />
         { view }
       </>
     );

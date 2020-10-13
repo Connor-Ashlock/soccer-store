@@ -64,7 +64,10 @@ class CheckoutForm extends React.Component {
     );
     return (
       <div className="row">
-        <h1 className="mb-4 col-12">My Cart</h1>
+        <div className="mb-4 col-12 d-flex justify-content-between align-items-center">
+          <h1 className="col-sm-8 p-0">My Cart</h1>
+          <span className="text-danger reminder col-sm-4 p-0 d-flex justify-content-end">Reminder: Please do not use any personal information!</span>
+        </div>
         <h5 className="mb-4 text-muted col-12">Order Total: { calculateTotal(this.props.cart) }</h5>
         <form className="col-12" onSubmit={this.handleSubmit}>
           <label>Name</label>
