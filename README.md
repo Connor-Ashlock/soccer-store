@@ -26,5 +26,5 @@ A full stack Node.js and React shopping cart app.
 
 ## Preview
 <p>
-  <img src="images/soccer-store.gif" alt="Soccer Store">
+  <img src="server/public/images/soccer-store.gif" alt="Soccer Store">
 </p>
