@@ -16,6 +16,7 @@ A full stack Node.js and React shopping cart app.
 - JSON
 
 ## Live Demo
+Coming soon
 
 ## Features
 - User can view the products for sale
