@@ -364,6 +364,28 @@ COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
 148	71	1	2999
 149	72	2	2595
 150	72	6	830
+151	73	1	2999
+152	73	4	999
+153	74	5	9900
+154	74	2	2595
+155	74	4	999
+156	74	2	2595
+157	74	3	2900
+158	74	4	999
+159	75	3	2900
+160	75	4	999
+161	75	6	830
+162	75	3	2900
+163	75	1	2999
+164	75	6	830
+165	75	6	830
+166	75	6	830
+167	75	6	830
+168	76	1	27500
+169	77	2	17000
+170	77	1	27500
+171	78	2	17000
+172	78	4	4999
 \.
 
 
@@ -444,6 +466,12 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 70	2020-09-28 23:06:14.90121+00
 71	2020-09-29 00:54:45.361792+00
 72	2020-09-29 01:04:45.422816+00
+73	2020-09-29 02:02:18.220497+00
+74	2020-09-29 17:09:56.257186+00
+75	2020-09-29 19:06:53.463203+00
+76	2020-10-12 23:04:51.290242+00
+77	2020-10-13 00:32:55.110547+00
+78	2020-10-13 17:42:53.159757+00
 \.
 
 
@@ -452,6 +480,20 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 --
 
 COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", "createdAt") FROM stdin;
+1	73	Connor	6000500040003000	12345 street	2020-09-29 02:05:32.437112+00
+2	73	Connor	600050004000p000	12345 street	2020-09-29 02:06:57.638306+00
+3	73	Connor	600050004000p000	12345 street	2020-09-29 02:07:52.469374+00
+4	73	Connor	600050004000p000	12345 street	2020-09-29 02:09:02.033029+00
+5	73	Connor	6000500oooo00p000	12345 street	2020-09-29 02:09:36.483209+00
+6	73	Connor	600050004000p000	12345 street	2020-09-29 02:10:29.898315+00
+7	73	Tim	60003333040003000	12345 street	2020-09-29 02:20:24.763666+00
+8	73	Cody	60003339049203000	12345 house street	2020-09-29 02:53:41.115477+00
+9	73	Cody	60003339049203000	12345 house street	2020-09-29 02:54:05.992952+00
+10	73	Cody	60003339049203000	12345 house street	2020-09-29 02:55:30.752101+00
+11	74	Batman	101010101010929	25874 The Bat Cave\nGotham City NY 90889	2020-09-29 18:22:14.424134+00
+12	74	me	89749837	my house	2020-09-29 18:28:13.069965+00
+13	74	hi	90909090	money	2020-09-29 19:06:47.077394+00
+14	76	Connor	2341421341	home	2020-10-13 00:23:00.326711+00
 \.
 
 
@@ -460,12 +502,12 @@ COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", 
 --
 
 COPY public.products ("productId", name, price, image, "shortDescription", "longDescription") FROM stdin;
-1	Shake Weight	2999	/images/shake-weight.jpg	Dynamic Inertia technology ignites muscles in arms, shoulders, and chest.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock.\\nAesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-2	ShamWow	2595	/images/shamwow.jpg	It's like a chamois, towel, and sponge, all in one! Soaks up to 10x it's weight in any liquid!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock.\\nAesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-3	Snuggie	2900	/images/snuggie.jpg	Super-Soft Fleece with pockets! One Size fits all Adults! Keeps you Warm & Your Hands-Free!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock.\\nAesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-4	Wax Vac	999	/images/wax-vac.jpg	Gentle way to remove ear wax. Safe and hygienic. Reduces the risk of painful infections.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock.\\nAesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-5	Ostrich Pillow	9900	/images/ostrich-pillow.jpg	Create your own snugly space in the world and feel-good anywhere with the ultimate cocoon pillow.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock.\\nAesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-6	Tater Mitts	830	/images/tater-mitts.jpg	8 Seconds is all you need with Tater Mitts. Quickly and easily prepare all your favorite potato dishes with Tater Mitts.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock.\\nAesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
+4	Stadium Jacket	4999	/images/jacket.jpg	A full-zip Stadium Jacket	This full-zip Stadium Jacket keeps you comfortable on the sidelines and while traveling to cold weather matches. Wrap yourself in warmth with poly-fill lining, a full hood and two zippered fleece-lined pockets and internal cuffs. Stay secure with nylon fasteners along the zipper. Keep your tactics and valuables close to the vest with two internal pockets. Polyester.
+2	Men's Authentic adidas Sergio Ramos Real Madrid Home Jersey 20/21	17000	/images/jersey.jpg	The classic white 2020/21 Real Madrid Authentic Home Jersey adds new accent color pink	With an aging core and coaching upheaval, manager Zinedine Zidane returned to Madrid in 2019, a move that breathed new life into Los Blancos. Real Madrid are the 2019/20 La Liga champs, a 34th league title. Karim Benzema carried the team as the highest goal scorer, captain Sergio Ramos marshaled the defense and was, incredibly, the second highest scorer. Thibaut Courtois was the leagues best goalkeeper.\\n\n       - Three stripes down the sides.\\n\n- Tiger print tag on the collar.\\n\n- Heat press badge.\\n\n- Curved hem.\\n\n- Mesh construction and Heatready technology provide moisture control.\\n\n\n100% Polyester. Official merchandise.
+5	Adidas Predator Pro Hybrid Goalkeeper Gloves	12999	/images/gloves.jpg	Adidas Predator gloves turn any goalkeeper into a shot-stopping beast! Play with the confidence that you're competing with a superior set of gloves from a great soccer brand	PALM: URG 2.0 latex for grip and cushioning.\\n\n\nCUT: Hybrid cut.\\n\n\nBACKHAND: Knit backhand material. Grippy control elements rise from the backhand for accurate, powerful punching.\\n\n\nCLOSURE: A compressive entry hugs your wrist for a natural, strapless fit.\\n\n\nBody: 91% polyester, 8% elastane, 1% nylon\\n\nPalm: 100% latex\\n\nDemonskin rubber details.
+6	Adidas Tango joggers	5999	/images/sweats.jpg	Tango joggers combine soccer lifestyle with the streets.	Soft French terry fabric provides comfort during a light work out , or hang out.\\n\n\n- Elastic drawcord waist\\n\n- Ribbed cuffs\\n\n- Front pockets\\n\n\n70/30 Cotton/polyester.
+3	Nike Premier League Flight Ball - Crimson/Black/Black	15999	/images/ball.jpg	The official match ball of the Premier League	The Premier League Flight Ball is the new standard in true flight. Nike Aerowsculpt technology, a revolutionary new innovation in aerodynamics, uses molded grooves for consistent flight, accuracy and control.\\n\n\nHigh-contrast graphics not only give the ball a fresh edge and look--they're designed to help players track the ball as it moves across the pitch. Includes Premier League logo. 3D printed ink reduces unexpected movement.\\n\n\n- All Conditions Control technology adds a grip texture for a consistent touch in wet or dry conditions.\\n\n- Four fused panels create a larger sweet spot.\\n\n- Machine-stitched casing for increased durability.\\n\n- Reinforced rubber bladder maintains shape and stabilizes ball during flight.\\n\n\n37% SYNTHETIC LEATHER 33% RUBBER 20% POLYESTER 10% COTTON\\n\n\nNote: All of our balls are shipped deflated. This helps in keeping our shipping costs low, savings we can pass on to you.\\n\n\nStandard Ball Sizing\\n\nSize 5: ages 12 and up\\n\nSize 4: ages 8-12\\n\nSize 3: ages 8 and under\\n\nSize 1: skills/practice
+1	Nike Mercurial Superfly 7 Elite	27500	/images/cleats.jpg	Soccer Cleat - White/Flash Crmison/Platinum Tint/Hyper Jade/Black	The Mercurial Superfly has always been on the forefront of speed and innovation. Now, the Superfly 7 is even more refined and perfected into one of the best speed boots ever created. It is made for the fastest players on the field. The ones who are always ready and on their toes, willing to sprint after every through ball to score the game winning goal.\\n\n\nNow, with a softer knit, a more form fitting upper, and a refined Dynamic Fit Collar, the new Mercurial Superfly 7 offers one of the best fits in the history of the Mercurial. It means you are lighter, faster, and more comfortable than ever before. Grab a pair and see why Mbappe and Cristano Ronaldo, two of the fastest players in the world, are wearing the Mercurial Superfly.\\n\n\nThe 360 degree flyknit upper continues to offer one of the most complete fits in the game. New high tenacity yarns in the Flyknit gives you a closer fit and feel around the foot. The Dynamic Fit collar is lower and more refined, ensuring a seamless fit from leg to foot.\\n\n\nThe new Flyknit used in the upper is thicker, offering a more plush touch on the ball than in previous models. It creates the perfect mix of speed, fit, and touch, creating what could be one of the best Mercurials ever made.\\n\n\nA stiff chasis and podular outsole combine to create an extremely responsive sole plate with aggressive traction. The chevron studs are perfect for accelerating and decelerating quickly on firm ground surfaces.\n\nWEIGHT: 7.0 oz.
 \.
 
 
@@ -473,21 +515,21 @@ COPY public.products ("productId", name, price, image, "shortDescription", "long
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 150, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 172, true);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 72, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 78, true);
 
 
 --
 -- Name: orders_orderId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
+SELECT pg_catalog.setval('public."orders_orderId_seq"', 14, true);
 
 
 --
