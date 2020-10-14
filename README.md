@@ -16,7 +16,7 @@ A full stack Node.js and React shopping cart app.
 - JSON
 
 ## Live Demo
-Coming soon
+https://soccerstore.connorashlock.com/
 
 ## Features
 - User can view the products for sale
