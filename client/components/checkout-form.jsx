@@ -63,7 +63,7 @@ class CheckoutForm extends React.Component {
       />
     );
     return (
-      <div className="row">
+      <div className="row mb-4">
         <div className="mb-4 col-12 d-flex justify-content-between align-items-center">
           <h1 className="col-sm-8 p-0">My Cart</h1>
           <span className="text-danger reminder col-sm-4 p-0 d-flex justify-content-end">Reminder: Please do not use any personal information!</span>

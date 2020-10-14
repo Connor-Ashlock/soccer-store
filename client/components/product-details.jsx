@@ -32,11 +32,11 @@ class ProductDetails extends React.Component {
     const longDescription = this.state.product.longDescription;
     const shortDescription = this.state.product.shortDescription;
     return (
-      <div className="row justify-content-center">
+      <div className="row justify-content-center mb-3">
         <div className="col-11 d-flex flex-wrap border p-4">
           <div className="text-muted col-12 back mb-2" onClick={this.handleClick}>&lt; Back to catalog</div>
-          <img src={image} alt={name} className="col-4 mb-3" />
-          <div className="col-8">
+          <img src={image} alt={name} className="col-sm-4 mb-3" />
+          <div className="col-sm-8">
             <h3>{name}</h3>
             <h5 className="text-muted">{formatPrice(price)}</h5>
             <p>{shortDescription}</p>
