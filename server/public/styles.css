@@ -31,6 +31,7 @@ header {
 
 img {
   object-fit: contain;
+  max-height: 330px;
 }
 
 @media (max-width: 1000px) {
