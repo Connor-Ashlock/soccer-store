@@ -137,6 +137,29 @@ app.post('/api/cart', express.json(), (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/cart/:cartItemId', (req, res, next) => {
+  const cartItemId = parseInt(req.params.cartItemId, 10);
+  if (!req.session.cartId) {
+    next(new ClientError('There must be a cartId in session', 400));
+  } else if (!cartItemId || cartItemId < 1) {
+    next(new ClientError('The cartItemId must be a positive integer', 400));
+  } else {
+    const deleteCartItem = `
+      delete from "cartItems"
+            where "cartItemId" = $1
+              and "cartId" = $2
+        returning *;
+    `;
+    db.query(deleteCartItem, [cartItemId, req.session.cartId])
+      .then(result => {
+        return result.rows[0]
+          ? res.sendStatus(204)
+          : next(new ClientError('The cartItemId does not exist in the cartItems table', 400));
+      })
+      .catch(err => console.error(err));
+  }
+});
+
 app.post('/api/orders', express.json(), (req, res, next) => {
   if (!req.session.cartId) throw new ClientError('A cartId must exist.', 400);
   if (!req.body.name && !req.body.creditCard && !req.body.shippingAddress) {
