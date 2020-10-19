@@ -14,7 +14,7 @@ function CartSummaryItem(props) {
         </div>
         <div className="col-sm-8">
           <div className="card-body">
-            <h5 className="card-title d-flex justify-content-between align-items-center">{props.item.name}<button onClick={handleDelete} className="btn btn-danger">x</button></h5>
+            <h5 className="card-title d-flex justify-content-between align-items-center">{props.item.name}<button onClick={handleDelete} className="btn btn-danger ml-4">x</button></h5>
             <p className="card-text text-muted">{formatPrice(props.item.price)}</p>
             <p className="card-text">{props.item.shortDescription}</p>
           </div>
