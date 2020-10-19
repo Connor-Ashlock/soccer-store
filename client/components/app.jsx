@@ -13,6 +13,7 @@ class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
     this.state = {
       view: { name: 'disclaimer', params: {} },
       cart: []
@@ -53,6 +54,15 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  removeFromCart(id) {
+    fetch(`/api/cart/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(() => this.getCartItems())
+      .catch(err => console.error(err));
+  }
+
   setView(name, params) {
     this.setState({ view: { name: name, params: params } });
   }
@@ -70,7 +80,7 @@ class App extends React.Component {
     } else if (this.state.view.name === 'details') {
       view = <ProductDetails addToCart={this.addToCart} setView={this.setView} params={this.state.view.params} />;
     } else if (this.state.view.name === 'cart') {
-      view = <CartSummary setView={this.setView} cart={this.state.cart} getCartItems={this.getCartItems} />;
+      view = <CartSummary setView={this.setView} cart={this.state.cart} removeFromCart={this.removeFromCart} />;
     } else if (this.state.view.name === 'checkout') {
       view = <CheckoutForm cart={this.state.cart} placeOrder={this.placeOrder} setView={this.setView} />;
     }

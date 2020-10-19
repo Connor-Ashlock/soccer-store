@@ -7,8 +7,6 @@ class CartSummary extends React.Component {
     super(props);
     this.handleBackClick = this.handleBackClick.bind(this);
     this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.state = { items: this.props.cart.length };
   }
 
   handleBackClick() {
@@ -19,25 +17,13 @@ class CartSummary extends React.Component {
     this.props.setView('checkout', {});
   }
 
-  handleDeleteClick(id) {
-    fetch(`/api/cart/${id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(() => {
-        this.props.getCartItems();
-        this.setState({ items: this.props.cart.length - 1 });
-      })
-      .catch(err => console.error(err));
-  }
-
   render() {
     return (
       <>
         <div className="text-muted back mb-2" onClick={this.handleBackClick}>&lt; Back to catalog</div>
         <h1 className="mb-4">My Cart</h1>
         { this.props.cart.length
-          ? this.props.cart.map((item, index) => <CartSummaryItem key={index} item={item} handleDeleteClick={this.handleDeleteClick} />)
+          ? this.props.cart.map((item, index) => <CartSummaryItem key={index} item={item} removeFromCart={this.props.removeFromCart} />)
           : <h3>Your cart is empty!</h3>
         }
         { this.props.cart.length !== 0 && <Footer cart={this.props.cart} handleClick={this.handleCheckoutClick} />}

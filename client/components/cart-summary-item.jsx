@@ -3,7 +3,7 @@ import formatPrice from './format-price';
 
 function CartSummaryItem(props) {
   function handleDelete() {
-    props.handleDeleteClick(props.item.cartItemId);
+    props.removeFromCart(props.item.cartItemId);
   }
 
   return (
