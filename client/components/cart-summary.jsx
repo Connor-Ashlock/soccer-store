@@ -2,26 +2,34 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 import calculateTotal from './calculate-total';
 
-function CartSummary(props) {
-  function handleBackClick() {
-    props.setView('catalog', {});
+class CartSummary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleBackClick = this.handleBackClick.bind(this);
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
   }
 
-  function handleCheckoutClick() {
-    props.setView('checkout', {});
+  handleBackClick() {
+    this.props.setView('catalog', {});
   }
 
-  return (
-    <>
-      <div className="text-muted back mb-2" onClick={handleBackClick}>&lt; Back to catalog</div>
-      <h1 className="mb-4">My Cart</h1>
-      { props.cart.length
-        ? props.cart.map((item, index) => <CartSummaryItem key={index} item={item} />)
-        : <h3>Your cart is empty!</h3>
-      }
-      { props.cart.length !== 0 && <Footer cart={props.cart} handleClick={handleCheckoutClick} />}
-    </>
-  );
+  handleCheckoutClick() {
+    this.props.setView('checkout', {});
+  }
+
+  render() {
+    return (
+      <>
+        <div className="text-muted back mb-2" onClick={this.handleBackClick}>&lt; Back to catalog</div>
+        <h1 className="mb-4">My Cart</h1>
+        { this.props.cart.length
+          ? this.props.cart.map((item, index) => <CartSummaryItem key={index} item={item} removeFromCart={this.props.removeFromCart} />)
+          : <h3>Your cart is empty!</h3>
+        }
+        { this.props.cart.length !== 0 && <Footer cart={this.props.cart} handleClick={this.handleCheckoutClick} />}
+      </>
+    );
+  }
 }
 
 function Footer(props) {
