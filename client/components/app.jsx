@@ -70,7 +70,7 @@ class App extends React.Component {
     } else if (this.state.view.name === 'details') {
       view = <ProductDetails addToCart={this.addToCart} setView={this.setView} params={this.state.view.params} />;
     } else if (this.state.view.name === 'cart') {
-      view = <CartSummary setView={this.setView} cart={this.state.cart} />;
+      view = <CartSummary setView={this.setView} cart={this.state.cart} getCartItems={this.getCartItems} />;
     } else if (this.state.view.name === 'checkout') {
       view = <CheckoutForm cart={this.state.cart} placeOrder={this.placeOrder} setView={this.setView} />;
     }
