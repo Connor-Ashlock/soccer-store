@@ -59,7 +59,10 @@ class App extends React.Component {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
-      .then(() => this.getCartItems())
+      .then(() => {
+        const newCart = this.state.cart.filter(item => item.cartItemId !== id);
+        this.setState({ cart: newCart });
+      })
       .catch(err => console.error(err));
   }
 
