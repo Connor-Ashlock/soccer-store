@@ -38,8 +38,12 @@ class ProductDetails extends React.Component {
     const shortDescription = this.state.product.shortDescription;
     return (
       <>
-        <Modal isOpen={this.state.modalIsOpen} >
-          <p>Item added to cart</p>
+        <Modal isOpen={this.state.modalIsOpen}
+          className="added"
+          style={{ overlay: { backgroundColor: 'rgba(255, 255, 255, 0)' } }}
+          closeTimeoutMS={1000}
+        >
+          <p className="rounded p-3 cart-modal">Item added to cart</p>
         </Modal>
         <div className="row justify-content-center mb-3">
           <div className="col-11 d-flex flex-wrap border p-4">

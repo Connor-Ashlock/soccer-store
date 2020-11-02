@@ -54,3 +54,27 @@ img {
 .reminder {
   font-size: medium;
 }
+
+.added {
+  position: fixed;
+  right: 7%;
+  top: 15%;
+}
+
+.cart-modal {
+  background-color:  rgb(194, 178, 131);
+  color: white;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
