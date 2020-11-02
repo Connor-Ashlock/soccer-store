@@ -18,6 +18,8 @@ class ProductDetails extends React.Component {
 
   handleAddToCart() {
     this.props.addToCart(this.state.product);
+    this.setState({ modalIsOpen: true });
+    setTimeout(() => { this.setState({ modalIsOpen: false }); }, 2000);
   }
 
   componentDidMount() {
