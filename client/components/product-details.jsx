@@ -1,12 +1,15 @@
 import React from 'react';
 import formatPrice from './format-price';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { product: null };
     this.handleClick = this.handleClick.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.state = { product: null, modalIsOpen: false };
   }
 
   handleClick() {
@@ -32,21 +35,26 @@ class ProductDetails extends React.Component {
     const longDescription = this.state.product.longDescription;
     const shortDescription = this.state.product.shortDescription;
     return (
-      <div className="row justify-content-center mb-3">
-        <div className="col-11 d-flex flex-wrap border p-4">
-          <div className="text-muted col-12 back mb-2" onClick={this.handleClick}>&lt; Back to catalog</div>
-          <img src={image} alt={name} className="col-sm-4 mb-3" />
-          <div className="col-sm-8">
-            <h3>{name}</h3>
-            <h5 className="text-muted">{formatPrice(price)}</h5>
-            <p>{shortDescription}</p>
-            <button className="btn btn-primary mb-4" onClick={this.handleAddToCart}>Add to Cart</button>
-          </div>
-          <div className="col-11">
-            <div>{formatDescription(longDescription)}</div>
+      <>
+        <Modal isOpen={this.state.modalIsOpen} >
+          <p>Item added to cart</p>
+        </Modal>
+        <div className="row justify-content-center mb-3">
+          <div className="col-11 d-flex flex-wrap border p-4">
+            <div className="text-muted col-12 back mb-2" onClick={this.handleClick}>&lt; Back to catalog</div>
+            <img src={image} alt={name} className="col-sm-4 mb-3" />
+            <div className="col-sm-8">
+              <h3>{name}</h3>
+              <h5 className="text-muted">{formatPrice(price)}</h5>
+              <p>{shortDescription}</p>
+              <button className="btn btn-primary mb-4" onClick={this.handleAddToCart}>Add to Cart</button>
+            </div>
+            <div className="col-11">
+              <div>{formatDescription(longDescription)}</div>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
