@@ -78,3 +78,7 @@ img {
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
+
+.grow:hover {
+  transform: scale(1.03);
+}

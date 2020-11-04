@@ -6,7 +6,7 @@ function ProductListItem(props) {
     props.setView('details', { productId: props.id });
   }
   return (
-    <div className="card mb-4">
+    <div className="card mb-4 grow">
       <img onClick={handleClick}
         src={props.product.image}
         alt={props.product.name}
