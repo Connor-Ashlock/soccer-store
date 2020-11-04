@@ -1,3 +1,7 @@
+body {
+  font-family: sans-serif;
+}
+
 .fa-futbol {
   font-size: 2rem;
 }
@@ -6,6 +10,7 @@ header {
   height: 70px;
   background-color: rgb(194, 178, 131);
   color: rgb(23, 17, 17);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .fa-shopping-cart {
